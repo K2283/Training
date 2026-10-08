@@ -183,15 +183,20 @@ console.log(res);
 
 
 const employees = [
-    {id: 1,name: "Ravi",department: "IT",salary: 50000},
-    {id: 2,name: "Priya",department: "HR",salary: 45000},
-    {id: 3,name: "Anil",department: "IT",salary: 60000}
+    { id: 1, name: "Avinash", department: "IT", salary: 50000 },
+    { id: 2, name: "Ravi", department: "HR", salary: 45000 },
+    { id: 3, name: "Kiran", department: "Finance", salary: 60000 },
+    { id: 4, name: "Sita", department: "IT", salary: 55000 },
+    { id: 5, name: "Rahul", department: "Marketing", salary: 48000 },
+    { id: 6, name: "Priya", department: "HR", salary: 52000 },
+    { id: 7, name: "Arjun", department: "IT", salary: 75000 },
+    { id: 8, name: "Sneha", department: "Finance", salary: 58000 },
+    { id: 9, name: "Vikram", department: "Marketing", salary: 65000 },
+    { id: 10, name: "Anjali", department: "IT", salary: 62000 }
 ];
 
-const employee1 = employees.find(
-    employee1 => employee1.name === "Gopi"
-);
-console.log(employee1);
+const employeeNames = employees.map(employee => employee.name);
+console.log(employeeNames);
 
 const topEarners = [...employees]
     .sort((a, b) => b.salary - a.salary)
@@ -199,12 +204,31 @@ const topEarners = [...employees]
 console.log(topEarners);
 
 const itEmployees = employees.filter(
-    employee => employee.department === "IT"
-);
+    employee => employee.department === "Sales");
 console.log(itEmployees);
 
 const totalSalary = employees.reduce(
-    (total, employee) => total + employee.salary,
-    0
+    (total, employee) => total + employee.salary,0);
+
+const averageSalary = totalSalary / employees.length;
+console.log("Total:", totalSalary);
+console.log("Average:", averageSalary);
+
+const groupedEmployees = employees.reduce(
+    (groups, employee) => {
+        if (!groups[employee.department]) {
+            groups[employee.department] = [];
+        }
+        groups[employee.department].push(employee);
+        return groups;
+    },
+    {}
 );
-console.log(totalSalary);
+console.log(groupedEmployees);
+
+const employee1 = employees.find(
+    employee => employee.name === "John");
+console.log(employee1);
+
+const highEarner = employees.some(employee => employee.salary > 100000);
+console.log(highEarner);
